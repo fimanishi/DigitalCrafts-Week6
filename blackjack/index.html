@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/styless.css" />
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="/static/blackjack.js"></script>
+  </head>
+  <body>
+    <div id="table">
+      <div id="messages"><p>   </p></div>
+      <label>Dealer: </label>
+      <label id="dealer-points" class="points">0</label>
+      <div id="dealer-hand" class="hand">
+      </div>
+      <label>Player: </label>
+      <label id="player-points" class="points">0</label>
+      <div id="player-hand" class="hand">
+      </div>
+      <div class="buttons">
+        <button id="deal-button">Deal</button>
+        <button id="hit-button">Hit</button>
+        <button id="stand-button">Stand</button>
+      </div>
+    </div>
+  </body>
+</html>
