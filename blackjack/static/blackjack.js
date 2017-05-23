@@ -14,7 +14,7 @@ function deal (){
     else{
       $("#dealer-hand").append("<img id='hidden' src='/static/cards/red_joker.png' height='80px' width='80px'/>");
       dealerHidden.point.push(card.point);
-      dealerHidden.name - card.name;
+      dealerHidden.name = card.name;
     }
     dealerHand.push(card.point);
   }
@@ -34,11 +34,21 @@ function hit (){
 }
 
 function stand (){
-  var card = get_card(deck);
-  $("#dealer-hand").append("<img src='/static/cards/" + card.name + "' height='80px' width='80px'/>");
-  dealerHand.push(card.point);
-  var points = calculate_points(dealerHand);
-  $("#dealer-points").text(points);
+  var points = 0;
+  while (points < 17){
+    if (dealerHand.length === 2){
+      $("#hidden").remove();
+      $("#dealer-hand").append("<img src='/static/cards/" + dealerHidden.name + "' height='80px' width='80px'/>");
+    }
+    points = calculate_points(dealerHand);
+    if (points < 17){
+      var card = get_card(deck);
+      $("#dealer-hand").append("<img src='/static/cards/" + card.name + "' height='80px' width='80px'/>");
+      dealerHand.push(card.point);
+    }
+    points = calculate_points(dealerHand);
+    $("#dealer-points").text(points);
+  };
 }
 
 function getRandomInt(min, max) {
