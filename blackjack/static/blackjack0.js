@@ -157,11 +157,14 @@ class Hand {
   display (id, start){
     for (var i = start; i < this.list.length; i++){
       $(id).append(this.list[i].url);
+      $(id).find(":last-child").hide().fadeIn(1000,"swing");
     }
   }
   display_dealer (){
     $("#dealer-hand").append(this.list[0].url);
+    $("#dealer-hand").find(":last-child").hide().fadeIn(1000,"swing");
     $("#dealer-hand").append("<img id='hidden' src='/static/cards/red_joker.png' height='80px' width='80px'/>");
+    $("#dealer-hand").find(":last-child").hide().fadeIn(1000,"swing");
   }
 
   clean (){
