@@ -40,8 +40,13 @@ function stand (){
   $("#hidden").remove();
   dealerHand.points();
   while (dealerHand.total < 17){
-    dealerHand.add(deck);
-    dealerHand.points();
+    if(playerHand.list.length === 2 && playerHand.total === 21 && dealerHand.total !== 21){
+      break;
+    }
+    else{
+      dealerHand.add(deck);
+      dealerHand.points();
+    }
   };
   $("#dealer-points").text(dealerHand.total);
   playerHand.points();
