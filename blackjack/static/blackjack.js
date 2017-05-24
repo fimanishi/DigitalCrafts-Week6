@@ -1,4 +1,11 @@
 function deal (){
+  if(deck.length < 30){
+    shuffle_deck(number);
+  }
+  $("#messages").text("");
+  $("#deal-button").hide();
+  $("#hit-button").show();
+  $("#stand-button").show();
   dealerHand = [];
   playerHand = [];
   dealerHidden = {point: [], name: ''};
@@ -31,6 +38,11 @@ function hit (){
   playerHand.push(card.point);
   var points = calculate_points(playerHand)
   $("#player-points").text(points);
+  if (points > 21){
+    $("#messages").text("You lost!");
+    $("#hit-button").hide();
+    $("#stand-button").hide();
+  }
 }
 
 function stand (){
@@ -49,6 +61,28 @@ function stand (){
     points = calculate_points(dealerHand);
     $("#dealer-points").text(points);
   };
+  playerPoints = calculate_points(playerHand);
+  if (playerPoints > points){
+    $("#messages").text("You won!");
+  }
+  else if(points > 21){
+    $("#messages").text("You won!");
+  }
+  else if(playerHand.length === 2 && playerPoints === 21 && points === 21 && dealerHand.length > 2){
+    $("#messages").text("You won!");
+  }
+  else if(dealerHand.length === 2 && points === 21 && playerPoints === 21 && playerHand.length > 2){
+    $("#messages").text("You won!");
+  }
+  else if(points === playerPoints){
+    $("#messages").text("It's a draw!");
+  }
+  else{
+    $("#messages").text("You lost!");
+  }
+  $("#hit-button").hide();
+  $("#stand-button").hide();
+  $("#deal-button").show();
 }
 
 function getRandomInt(min, max) {
@@ -124,7 +158,7 @@ function calculate_points(hand){
   return total;
 }
 
-function shuffle_deck(deck, n){
+function shuffle_deck(n){
   return create_deck(n);
 }
 
@@ -135,7 +169,8 @@ var number = 3;
 var deck = create_deck(3);
 
 $(document).ready(function (){
-
+  $("#hit-button").hide();
+  $("#stand-button").hide();
   $(".buttons").on("click", "#hit-button", hit);
   $(".buttons").on("click", "#deal-button", deal);
   $(".buttons").on("click", "#stand-button", stand);
