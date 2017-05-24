@@ -50,6 +50,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  color : white;
+  font-size: 2em;
 }
 
 p {
@@ -59,4 +61,8 @@ p {
 
 button {
   padding: 10px 10px;
+}
+
+label {
+  color: white;
 }
